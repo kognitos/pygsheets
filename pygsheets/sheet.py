@@ -260,10 +260,10 @@ class SheetAPIWrapper(object):
             'values': values,
             'majorDimension': major_dimension
         }
+        kwargs['valueInputOption'] = kwargs.get('valueInputOption', 'USER_ENTERED')
         request = self.service.spreadsheets().values().append(spreadsheetId=spreadsheet_id,
                                                               range=range,
                                                               body=body,
-                                                              valueInputOption=kwargs.get('valueInputOption', 'USER_ENTERED'),
                                                               **kwargs)
         return self._execute_requests(request)
 
