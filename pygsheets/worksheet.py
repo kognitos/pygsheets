@@ -1519,12 +1519,17 @@ class Worksheet(object):
         if start is not None or end is not None:
             if end is None:
                 end = (self.rows, self.cols)
+            del kwargs['include_tailing_empty_rows']
+            del kwargs['include_tailing_empty']
             values = self.get_values(start, end, value_render=value_render,
                                      include_tailing_empty=include_tailing_empty,
                                      include_tailing_empty_rows=include_tailing_empty_rows)
         else:
+            del kwargs['include_tailing_empty_rows']
+            del kwargs['include_tailing_empty']
             values = self.get_all_values(returnas='matrix', include_tailing_empty=include_tailing_empty,
-                                         value_render=value_render, include_tailing_empty_rows=include_tailing_empty_rows)
+                                         value_render=value_render, include_tailing_empty_rows=include_tailing_empty_rows,
+                                         **kwargs)
             
         max_row = max(len(row) for row in values)
         values = [row + [empty_value] * (max_row - len(row)) for row in values]
