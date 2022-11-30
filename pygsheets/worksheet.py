@@ -1523,7 +1523,8 @@ class Worksheet(object):
             del kwargs['include_tailing_empty']
             values = self.get_values(start, end, value_render=value_render,
                                      include_tailing_empty=include_tailing_empty,
-                                     include_tailing_empty_rows=include_tailing_empty_rows)
+                                     include_tailing_empty_rows=include_tailing_empty_rows,
+                                     **kwargs)
         else:
             del kwargs['include_tailing_empty_rows']
             del kwargs['include_tailing_empty']
